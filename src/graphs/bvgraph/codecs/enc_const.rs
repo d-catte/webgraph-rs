@@ -79,7 +79,7 @@ macro_rules! select_code_write {
             bv_const_codes::DELTA => $self.code_writer.write_delta($value),
             bv_const_codes::ZETA if $k == 1 => $self.code_writer.write_gamma($value),
             bv_const_codes::ZETA if $k == 3 => $self.code_writer.write_zeta3($value),
-            bv_const_codes::ZETA => $self.code_writer.write_zeta($value, K),
+            bv_const_codes::ZETA => $self.code_writer.write_zeta($value, K.try_into().unwrap()),
             _ => panic!("Only values in the range [0..4) are allowed to represent codes"),
         }
     };
@@ -204,7 +204,7 @@ macro_rules! select_code_mock_write {
             bv_const_codes::UNARY => $value as usize + 1,
             bv_const_codes::GAMMA => len_gamma($value),
             bv_const_codes::DELTA => len_delta($value),
-            bv_const_codes::ZETA => len_zeta($value, K),
+            bv_const_codes::ZETA => len_zeta($value, K.try_into().unwrap()),
             _ => panic!("Only values in the range [0..4) are allowed to represent codes"),
         })
     };

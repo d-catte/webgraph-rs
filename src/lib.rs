@@ -7,7 +7,6 @@
  */
 
 #![doc = include_str!("../README.md")]
-#![deny(unstable_features)]
 #![deny(trivial_casts)]
 #![deny(unconditional_recursion)]
 #![deny(clippy::empty_loop)]
@@ -16,7 +15,7 @@
 #![deny(unreachable_patterns)]
 #![deny(unused_macro_rules)]
 #![deny(unused_doc_comments)]
-
+#![feature(trivial_bounds)]
 pub mod algo;
 #[cfg(feature = "cli")]
 pub mod cli;

@@ -126,7 +126,7 @@ macro_rules! select_code_read {
             bv_const_codes::DELTA => $self.code_reader.read_delta().unwrap(),
             bv_const_codes::ZETA if $k == 1 => $self.code_reader.read_gamma().unwrap(),
             bv_const_codes::ZETA if $k == 3 => $self.code_reader.read_zeta3().unwrap(),
-            bv_const_codes::ZETA => $self.code_reader.read_zeta(K as u64).unwrap(),
+            bv_const_codes::ZETA => $self.code_reader.read_zeta((K as u64).try_into().unwrap()).unwrap(),
             _ => panic!("Only values in the range [0..4) are allowed to represent codes"),
         }
     };
